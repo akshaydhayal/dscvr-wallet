@@ -30,11 +30,13 @@ const { client, user, content, isReady } = useCanvasClient();
     const recieverPublickey=new PublicKey(recieverAddress);
     const transaction = await createSendSolTranaction(senderPublickey,recieverPublickey,amount)
   
+    console.log('tx recieved from createSendSol fn : ',transaction);
     if(!transaction){
         setErrorMessage("Failed to create the send transaction");
         return;
     }
     const unsignedTx=bs58.default.encode(transaction.serialize())
+    console.log('unsigned tx generated : ',unsignedTx);
     return{unsignedTx};
 }
 
@@ -44,6 +46,7 @@ const { client, user, content, isReady } = useCanvasClient();
         setErrorMessage('Transaction not executed!');
         return;
     }
+    console.log(response);
     if(response.untrusted.success){
         setSuccessfulSignedTx(response.untrusted.signedTx);
     }else if(response.untrusted.errorReason=="user-cancelled"){
@@ -63,19 +66,19 @@ const { client, user, content, isReady } = useCanvasClient();
     <div>
         <h1>Send Transaction</h1>
         {successfulSignedTx? 
-            <div>
+            <div className='flex flex-col gap-4'>
                 <p>Transaction Signed Successfully!</p>
                 <p>Transaction Hash: {successfulSignedTx}</p>
             </div>:
-            <div>
-                <p>Senser pub key : dfghj</p>
-                <input type='text' placeholder='enter reciever key' value={recieverAddress} onChange={(e)=>{
+            <div className='flex flex-col gap-4 w-full'>
+                <p className='text-lg'>Sender pub key : {senderAddress}</p>
+                <input className='p-2 px-4 w-full' type='text' placeholder='enter reciever key' value={recieverAddress} onChange={(e)=>{
                     setRecieverAddress(e.target.value);
                 }}/>
-                <input type='number' placeholder='enter reciever key' value={amount} onChange={(e)=>{
+                <input className='p-2 px-4 w-full' type='number' placeholder='enter reciever key' value={amount} onChange={(e)=>{
                     setAmount(Number(e.target.value));
                 }}/>
-                <button onClick={()=>{
+                <button className='p-1 px-4 border' onClick={()=>{
                     handleSend()
                 }}>Send</button>
             </div>
