@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
       <main className="text-white">
+        <h1>Home Page</h1>
         <CanvasClientWrapper />
       </main>
   );
