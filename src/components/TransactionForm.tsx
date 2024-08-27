@@ -84,7 +84,7 @@ const TransactionForm: React.FC<Props> = ({ canvasClient}) => {
 
     if (response.untrusted.success) {
       setSuccessfulSignedTx(response.untrusted.signedTx);
-      onSuccess(response.untrusted.signedTx);
+    //   onSuccess(response.untrusted.signedTx);
     } else if (response.untrusted.errorReason === "user-cancelled") {
       setErrorMessage("User cancelled transaction");
     } else {
