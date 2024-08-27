@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { client, user, content, isReady } = useCanvasClient();
-
+  console.log('client: ',client,'use : ',user,'content : ',content,'isReady : ',isReady);
   return (
       <main className="text-white">
         <h1>Home Page</h1>

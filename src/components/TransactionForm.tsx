@@ -102,10 +102,12 @@ const TransactionForm: React.FC<Props> = ({ canvasClient}) => {
   };
 
   const submit = (event: React.FormEvent) => {
+    console.log('a');
     event.preventDefault();
     setErrorMessage("");
     setSuccessfulSignedTx(undefined);
     sendTransaction();
+    console.log('b');
   };
 
   return (
