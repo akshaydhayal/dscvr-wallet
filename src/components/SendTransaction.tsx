@@ -56,7 +56,8 @@ const { client, user, content, isReady } = useCanvasClient();
     }
   }
 
-  function handleSend(){
+  function handleSend(event:any){
+    event.preventDefault();
     setErrorMessage("");
     setSuccessfulSignedTx(undefined);
     sendTransaction();
@@ -78,8 +79,8 @@ const { client, user, content, isReady } = useCanvasClient();
                 <input className='p-2 px-4 w-full' type='number' placeholder='enter reciever key' value={amount} onChange={(e)=>{
                     setAmount(Number(e.target.value));
                 }}/>
-                <button className='p-1 px-4 border' onClick={()=>{
-                    handleSend()
+                <button className='p-1 px-4 border' onClick={(e)=>{
+                    handleSend(e)
                 }}>Send</button>
             </div>
         }
