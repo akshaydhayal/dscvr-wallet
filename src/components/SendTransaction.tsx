@@ -41,7 +41,7 @@ const { client, user, content, isReady } = useCanvasClient();
 }
 
   async function sendTransaction(){
-    const response=await client?.connectWalletAndSendTransaction('solamna:103',createTx);
+    const response=await client?.connectWalletAndSendTransaction('solana:103',createTx);
     if(!response){
         setErrorMessage('Transaction not executed!');
         return;
