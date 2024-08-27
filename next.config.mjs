@@ -17,7 +17,7 @@ const nextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "connect-src 'self' https://*.solana.com/  https://api.dscvr.one https://api1.stg.dscvr.one https://*.helius-rpc.com; script-src 'self'; style-src 'self'; img-src 'self'; ",
+              "default-src 'self'; script-src 'self'; connect-src 'self' https://*.solana.com/  https://api.dscvr.one https://api1.stg.dscvr.one https://*.helius-rpc.com; script-src 'self'; style-src 'self'; img-src 'self'; ",
           },
         ],
       },

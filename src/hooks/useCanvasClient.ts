@@ -25,6 +25,7 @@ export function useCanvasClient() {
 
     async function initializeCanvas() {
       const client = new CanvasClient();
+    //   client.connectWalletAndSendTransaction()
 
       try {
         const response = await client.ready();
