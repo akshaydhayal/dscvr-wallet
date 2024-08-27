@@ -69,7 +69,9 @@ const TransactionForm: React.FC<Props> = ({ canvasClient}) => {
   };
 
   const sendTransaction = async () => {
+    console.log('createTx : ');
     const response = await canvasClient.connectWalletAndSendTransaction(clusterInfo.chainId, createTx);
+    console.log('response: ',response);
 
     if (!response) {
       setErrorMessage("Transaction not executed");
@@ -84,6 +86,7 @@ const TransactionForm: React.FC<Props> = ({ canvasClient}) => {
 
     if (response.untrusted.success) {
       setSuccessfulSignedTx(response.untrusted.signedTx);
+      console.log('response.untrusted : ',response.untrusted);
     //   onSuccess(response.untrusted.signedTx);
     } else if (response.untrusted.errorReason === "user-cancelled") {
       setErrorMessage("User cancelled transaction");
@@ -153,12 +156,14 @@ const TransactionForm: React.FC<Props> = ({ canvasClient}) => {
               Amount (SOL)
             </label>
             <input
-              type="number"
+            //   type="number"
+              type="text"
               name="amount"
               className="flex-1 text-gray-700 border border-gray-700 rounded-xl w-full"
               value={amount || ""}
-              onChange={(e) => setAmount(parseFloat(e.target.value))}
-              step="0.000000001"
+              onChange={(e) => setAmount(Number(e.target.value))}
+            //   onChange={(e) => setAmount(parseFloat(e.target.value))}
+            //   step="0.000000001"
             />
           </div>
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
